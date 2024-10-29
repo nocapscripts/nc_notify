@@ -1,71 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
-	<script src="scripts.js" type="text/javascript"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-	<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification System</title>
+    
+    <!-- Load jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js" type="text/javascript"></script>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <style>
+        .progressCircle {
+            transition: stroke-dashoffset 0.1s linear;
+        }
+  
+        .notification-bg {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            max-height: 57px;
+            color: white;
+            /* Correcting gap usage */
+            margin-right: 10px; 
+        }
+  
+        .notify-timer svg {
+            margin-left: auto;
+        }
+  
+        /* Position the notification container at the bottom of the screen */
+        .notify-wrap {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: auto;
+            padding: 1rem;
+        }
+  
+        .bg-red-500 {
+            background-color: #f87171;
+        }
+  
+        .bg-yellow-500 {
+            background-color: #fbbf24;
+        }
+  
+        .bg-blue-500 {
+            background-color: #60a5fa;
+        }
+  
+        .icon {
+            margin-right: 0.75rem;
+        }
+    </style>
 </head>
 <body>
-	<div class="divwrap">
-		<div class="notify-wrap fixed bottom-0 w-full gap-3 flex flex-col items-center justify-end mb-4">
-	  		<!-- Notifications will be added here dynamically -->
-	  	</div>
+    <div class="divwrap">
+        <div class="notify-wrap fixed bottom-0 w-full gap-3 flex flex-col items-center justify-end mb-4">
+         
+        </div>
     </div>
 </body>
 </html>
-
-<style>
-	.progressCircle {
-	  transition: stroke-dashoffset 0.1s linear;
-	}
-  
-	.notification-bg {
-	  display: flex;
-	  align-items: center;
-	  padding: 1rem;
-	  margin-bottom: 1rem;
-	  max-height: 57px;
-	  max-width: auto;
-	  height: auto;
-	  width: auto;
-	  color: white;
-	  gap: 10,
-	}
-  
-	.notify-timer svg {
-	  margin-left: auto;
-	  gap: 20;
-	}
-  
-	/* Position the notification container at the bottom of the screen */
-	.notify-wrap {
-	  position: fixed;
-	  bottom: 1rem;
-	  left: 50%;
-	  transform: translateX(-50%);
-	  z-index: 9999;
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  width: auto;
-	  padding: 1rem;
-	}
-  
-	.bg-red-500 {
-	  background-color: #f87171;
-	}
-  
-	.bg-yellow-500 {
-	  background-color: #fbbf24;
-	}
-  
-	.bg-blue-500 {
-	  background-color: #60a5fa;
-	}
-  
-	.icon {
-	  margin-right: 0.75rem;
-	}
-  </style>
-  
