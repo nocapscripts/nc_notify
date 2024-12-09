@@ -1,14 +1,15 @@
-local function openGui(text, type, length)
+local function Notify(text, type, length)
+    
     guiEnabled = true
     SendNUIMessage({runProgress = true, colorsent = type, textsent = text, fadesent = length})
 end
-exports('sendnotify', openGui)
+exports('Notify', Notify)
 
 function closeGui()
     guiEnabled = false
     SendNUIMessage({closeProgress = true})
 end
-exports('closenotify', closeGui)
+exports('closeNotify', closeGui)
 
 
 RegisterNetEvent('DoLongHudText', function(text, type, length)
@@ -19,6 +20,7 @@ RegisterNetEvent('DoLongHudText', function(text, type, length)
 
 
 end)
+NC.SecureNetEvent("ESX:Notify", Notify)
 
 -- Numbered event
 RegisterNetEvent('DoShortHudText', function(text, type, length)
