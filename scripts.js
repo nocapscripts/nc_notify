@@ -25,13 +25,15 @@ $(document).ready(function () {
   };
 
   const timerSvg = `
-    <div class="notify-timer">
+    
       <svg width="25" height="25" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="7.5" cy="7.5" r="5" fill="none" stroke="white" stroke-opacity="0.17" stroke-width="1.5"/>
-        <circle class="progressCircle" cx="7.5" cy="7.5" r="5" fill="none" stroke="#00e68a" stroke-width="1.5"
-          stroke-dasharray="31.41592653589793" stroke-dashoffset="31.41592653589793"/>
-      </svg>
-    </div>`;
+        <!-- Background Circle -->
+        <circle cx="7.5" cy="7.5" r="5" fill="none" stroke="rgba(32, 161, 32, 1)" stroke-opacity="0.17" stroke-width="1.5" />
+        <!-- Progress Circle -->
+        <circle class="progressCircle" cx="7.5" cy="7.5" r="5" fill="none" stroke="rgba(32, 161, 32, 1)" stroke-width="1.5"
+          stroke-dasharray="31.41592653589793" stroke-dashoffset="31.41592653589793" />
+      </svg>`;
+
   function createNotification(type, message, fadeTime) {
       if ($(`.notification-bg:contains("${message}")`).length) return;
     
@@ -39,16 +41,19 @@ $(document).ready(function () {
         error: { icon: icons.error, color: "rgba(239, 68, 68, 0.7)", iconColor: "#d4d4d4" },
         warning: { icon: icons.warning, color: "rgba(234, 179, 8, 0.7)", iconColor: "#d4d4d4" },
         info: { icon: icons.info, color: "rgba(59, 130, 246, 0.7)", iconColor: "#d4d4d4" },
-        success: { icon: icons.success, color: "rgba(34, 197, 94, 0.7)", iconColor: "#d4d4d4" }, // Success example
+        success: { icon: icons.success, color: "rgba(34, 197, 94, 0.7)", iconColor: "#d4d4d4" }, 
       };
     
-      const currentSettings = settings[type] || settings.info;
+      const currentSettings = settings[type] || settings.success;
     
       const notificationElement = $(`
         <div class="notification-bg shadow-lg rounded" data-total-time="${fadeTime}" style="background-color: ${currentSettings.color};">
           <i class="icon">${currentSettings.icon}</i>
           <span class="ml-3 text-center items-center justify-center rounded-sm p-2">${message}</span>
+          <div class="notify-timer">
           ${timerSvg}
+          </div>
+         
         </div>`
       );
     
@@ -71,7 +76,7 @@ $(document).ready(function () {
   function updateProgress(element, progress) {
     const circumference = 2 * Math.PI * 5;
     const offset = (1 - progress / 100) * circumference;
-    $(element).find('.progressCircle').attr({ 'stroke-dashoffset': offset, 'stroke': '#e88c0c' });
+    $(element).find('.progressCircle').attr({ 'stroke-dashoffset': offset, 'stroke': '#00e68a' });
   }
 
   function startTimer(notification) {

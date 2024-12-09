@@ -15,7 +15,7 @@ exports('closeNotify', closeGui)
 RegisterNetEvent('DoLongHudText', function(text, type, length)
     guiEnabled = true
     if not length then length = 6000 end
-    if not type then type = 'warning' end
+    if not type then type = 'info' end
     SendNUIMessage({runProgress = true, colorsent = type, textsent = text, fadesent = length})
 
 
@@ -55,7 +55,7 @@ end)
 RegisterCommand('testnotify', function()
 
 
-    TriggerEvent('DoLongHudText', "ASDASDADADASDAADADADADADADD AASDADADASDAD ASDAS DASSA", "warning", 10000)
+    TriggerEvent('DoLongHudText', "Proov", nil, 10000)
 
 
 end, false)
