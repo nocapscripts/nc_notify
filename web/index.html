@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vue Notifications</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Vue 3 CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+        <style>
+            .notification-bg {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                max-height: 57px;
+                color: rgb(233, 233, 233);
+            }
+
+            .notify-wrap {
+                position: fixed;
+                bottom: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .icon {
+                margin-right: 0.75rem;
+            }
+
+            .notify-timer svg {
+                margin-left: auto;
+            }
+
+            .progressCircle {
+                transition: stroke-dashoffset 0.1s linear;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="notify-wrap">
+                <div
+                    v-for="n in notifications"
+                    :key="n.id"
+                    class="notification-bg shadow-lg rounded transition-all duration-300 ease-out"
+                    :class="n.visible
+                    ? 'opacity-100 translate-x-0 scale-100 blur-0'
+                    : 'opacity-0 translate-x-8 scale-95 blur-sm'"
+                    :style="{
+                    backgroundColor: n.color,
+                    maxHeight: n.visible ? '60px' : '0px',
+                    marginBottom: n.visible ? '1rem' : '0px',
+                    overflow: 'hidden'
+                  }"
+                >
+                    <img class="icon w-10 h-10" :src="n.icon" alt="icon" />
+
+                    <span class="ml-3 text-center p-2"> {{ n.message }} </span>
+
+                    <div class="notify-timer" v-html="timerSvg"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts.js"></script>
+    </body>
+</html>
